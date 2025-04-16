@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to DBMS Quiz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #0d1117;
+            color: #e6edf3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .top-button {
+            align-self: flex-start;
+            margin-bottom: 1rem;
+            padding: 0.6rem 1.2rem;
+            background: linear-gradient(135deg, #8b5cf6, #1f6feb);
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .top-button:hover {
+            background: linear-gradient(135deg, #1f6feb, #8b5cf6);
+            transform: translateY(-2px);
+        }
+
+        .greeting-container {
+            text-align: center;
+            animation: fadeInUp 1s ease;
+            margin-bottom: 2rem;
+        }
+
+        .greeting-container h1 {
+            font-size: 2.5rem;
+            color: #58a6ff;
+        }
+
+        .greeting-container .score-box {
+            background: linear-gradient(135deg, #1f6feb, #8b5cf6);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            display: inline-block;
+            box-shadow: 0 0 20px rgba(88, 166, 255, 0.4);
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 1000px;
+            animation: fadeInUp 1.5s ease;
+        }
+
+        .topic-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            padding: 1.2rem;
+            text-align: center;
+            border-radius: 10px;
+            transition: transform 0.2s, background 0.3s;
+            cursor: pointer;
+        }
+
+        .topic-card:hover {
+            background: #1f2937;
+            transform: translateY(-5px);
+        }
+
+        .topic-card a {
+            color: #e6edf3;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Button -->
+    <a href="http://127.0.0.1:3000/index.html" class="top-button">Back to Home</a>
+
+    <div class="greeting-container">
+        <h1>Hello, {{ username }}! ✨</h1>
+        
+        <div class="score-box">
+            <p style="margin: 0; font-size: 1.1rem;">
+                🔥 Your <strong>Overall Score</strong>: <strong>{{ overall_score }}</strong>
+            </p>
+            <p style="margin: 5px 0 0; color: #58a6ff; font-size: 0.9rem;">
+                Keep going! You're improving with every quiz 💪
+            </p>
+        </div>
+        
+        <p style="margin-top: 12px; color: #8b949e; font-size: 0.95rem;">
+            Level up your learning by taking quizzes in the topics below:
+        </p>
+    </div>
+    
+    <div class="topics-grid">
+        {% for topic in topics %}
+            <div class="topic-card">
+                <a href="{{ url_for('quiz', topic_id=topic.topic_id) }}">
+                    {{ topic.topic_name }}
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Score</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f8ff;
+            text-align: center;
+            margin-top: 100px;
+        }
+        .greeting {
+            font-size: 2em;
+            animation: pop 1s ease-out;
+        }
+        @keyframes pop {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .score-box {
+            background: #d1e7dd;
+            padding: 20px;
+            border-radius: 15px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="greeting">
+        🎉 Hello, {{ result.name }}! <br>
+        You scored <strong>{{ result.score }}</strong> in <em>{{ result.topicname }}</em>!
+    </div>
+
+    <div class="score-box">
+        <p>Keep learning and try another topic 🚀</p>
+        <a href="/topics">Back to Topics</a>
+    </div>
+</body>
+</html>
